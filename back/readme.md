@@ -1,12 +1,17 @@
-## Steps to start api locally:
+## Install & Run
 
-1. In `/root/` directory run `npm install`
-2. In `/root/` directory create `.env` file
-   2.1 .env variables: 'PORT, MONGO_USER, MONGO_PASSWORD, MONGO_DB'.
-   2.2 All variable values can be found in confluence under api documentation section.
-3. In `/root/` directory run `node app.js`
+### Required setup:
 
-## Required setup:
+```bash
+nodejs --version # must be `10^
+npm --version    # must be `7^
+```
 
-1. `NodeJS`: version - `10^`
-2. `Npm`: version `7^`
+### Steps to start api locally:
+
+```bash
+cd ./back # i.e. the root for this readme.md
+npm install
+echo "MONGO_USER = test_user\nMONGO_PASSWORD = fOnjVFcYyaN38l1T\nMONGO_DB = reservations-dev\nPORT = 8000\nSECRET_KEY = plsffbn585412fdfsda" > .env
+node app.js`
+```
