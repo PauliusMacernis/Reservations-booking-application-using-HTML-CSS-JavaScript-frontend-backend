@@ -7,4 +7,5 @@ Written by me.
 # Back
 
 Taken from https://bitbucket.org/emtn/reservations-api/src/master/  
-For the details on how to install it, refer to ./back/readme.md  
+For the details on how to install it, refer to `./back/readme.md`  
+After the installation, visit [http://localhost:8000](http://localhost:8000)  
