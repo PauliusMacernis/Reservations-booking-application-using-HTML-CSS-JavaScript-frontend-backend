@@ -7,8 +7,6 @@ Exercise: Reservations booking application using HTML CSS JavaScript (frontend, 
 
 Written by me.
 
-Related material to be learning from on the way:  
-
 
 # Back
 
@@ -20,6 +18,8 @@ After the installation, visit [http://localhost:8000](http://localhost:8000)
 
 
 # Docs
+
+Related material to be learning from on the way.
 
 ---------------------------------------
 
