@@ -1,0 +1,33 @@
+#calendar-in-month-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+        ". . . . . . ."
+        ". . . . . . .";
+}
+.day_of_previous_month_relative_to_selected_month, .day_of_next_month_relative_to_selected_month {
+  color: grey;
+}
+.today {
+  color: blue;
+}
+button {
+  text-transform: uppercase;
+}
+.modal-header {
+  padding: 5px 5px 0 5px;
+  background-color: #36007c;
+  color: white;
+}
+.modal-header-text {
+  font-size: medium;
+}
+.modal-close-button {
+  float: right;
+  color: #ffffff;
+}
+.modal-close-button:hover {
+  text-decoration: underline;
+}

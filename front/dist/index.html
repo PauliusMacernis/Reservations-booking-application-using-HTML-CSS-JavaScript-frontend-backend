@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="assets/styles/app.css" />
+    <link rel="stylesheet" href="assets/styles/calendar.css" />
+    <script src="../assets/scripts/App.js" defer></script>
+  </head>
+  <body>
+    <!-- Monthly calendar view -->
+    <template id="calendar-header">
+      <div class='item-1'>&nbsp;</div>
+      <div class='item-2'><button class='prev-month'>PREV</button></div>
+      <div class='item-3'>&nbsp;</div>
+      <div class='item-4' id="current-month-and-year"></div>
+      <div class='item-5'>&nbsp;</div>
+      <div class='item-6'><button class='next-month'>NEXT</button></div>
+      <div class='item-7'>&nbsp;</div>
+      <div class='item-1'>Mon</div>
+      <div class='item-2'>Tue</div>
+      <div class='item-3'>Wed</div>
+      <div class='item-4'>Thu</div>
+      <div class='item-5'>Fri</div>
+      <div class='item-6'>Sat</div>
+      <div class='item-7'>Sun</div>
+    </template>
+    <template id="calendar-row">
+      <div class='item-1 monday'>item 1</div>
+      <div class='item-2 tuesday'>item 2</div>
+      <div class='item-3 wednesday'>item 3</div>
+      <div class='item-4 thursday'>item 4</div>
+      <div class='item-5 friday'>item 5</div>
+      <div class='item-6 saturday'>item 6</div>
+      <div class='item-7 sunday'>item 7</div>
+    </template>
+
+    <template id="reservation-button-row">
+      <div class="reservation-button-row-container">
+        <p class="reservation-button-description">TBD</p>
+        <button class="reservation-button">TBD</button>
+      </div>
+    </template>
+
+    <template id="reservation-submission-form-template">
+<!--      <form id="reservation-submission">-->
+        <label for="firstName">First name</label><input type="text" name="firstName" id="firstName" value=""><br>
+        <label for="lastName">Last name</label><input type="text" name="lastName" id="lastName" value=""><br>
+        <input type="hidden" name="reservationDate" id="reservationDate" value="">
+        <button type="submit">Submit</button>
+<!--      </form>-->
+    </template>
+
+    <!-- Modal -->
+    <template id="modal-template">
+      <div class="backdrop"></div>
+      <div class="modal"><div class="modal-header"><span class="modal-header-text">TBD</span><span class="modal-close-button">X</span></div></div>
+    </template>
+    <template id="loading-modal-content">
+      <div class="modal__content centered">
+        <div class="lds-dual-ring"></div>
+      </div>
+    </template>
+
+    <header>
+      <h1>Select reservation date</h1>
+    </header>
+
+    <div id="calendar-in-month-view"></div>
+  </body>
+</html>

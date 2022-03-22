@@ -1,11 +1,25 @@
-Exercise: Reservations booking application using HTML CSS JavaScript (frontend, backend)
+# Disclaimer
 
+---------------------------------------
+
+I am aware, the front-end solution is not perfect and may be tweaked much more. Some code may be refactored, 
+optimized, etc. However, I have 10 minutes to push it today or 11 minutes to push it tomorrow. Choosing today.  
+
+# Intro
+
+---------------------------------------
+
+Exercise: Reservations booking application using HTML CSS JavaScript (frontend, backend)
+Provided by [Emotion](https://emotion.lt/) as [ON-932](https://emotion-ever-better.atlassian.net/browse/ON-932)
 
 # Front
 
 ---------------------------------------
 
-Written by me.
+Written by me,  
+influenced by Udemy course on JavaScript (see bellow for the links).  
+For the details on how to install it, refer to `./front/README.md`  
+After the installation, visit [http://localhost:8080](http://localhost:8080)
 
 
 # Back
