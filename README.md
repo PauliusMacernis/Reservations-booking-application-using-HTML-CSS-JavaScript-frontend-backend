@@ -105,3 +105,12 @@ Related material to be learning from on the way.
 - https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/
 - https://adrianmejia.com/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/
 - https://adrianmejia.com/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/
+
+# Converting to TypeScript
+
+The regular JavaScript project of the previous challenge has been converted to TypeScript. And here you finally see the result.
+The main steps to convert the regular JavaScript to TypeScript were these:  
+
+- `tsc --init`, and changes in the `tsconfig.json`
+- In case of development, use `tsc` or `tsc --watch` for the compilation from ts to js
+- 
