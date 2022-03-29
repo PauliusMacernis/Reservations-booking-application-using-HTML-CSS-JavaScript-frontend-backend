@@ -4,35 +4,30 @@ const CleanPlugin = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    'App': './src/App.js',
+    'App': './src/App.ts',
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist', 'assets', 'scripts'),
-    publicPath: 'assets/scripts/'
+    path: path.resolve(__dirname, 'dist', 'assets', 'js'),
+    publicPath: 'assets/js/'
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist'
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.ts$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                { useBuiltIns: 'usage', corejs: { version: 3 } }
-              ]
-            ]
-          }
+          loader: 'ts-loader'
         }
       }
     ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   },
   plugins: [new CleanPlugin.CleanWebpackPlugin()]
 };
