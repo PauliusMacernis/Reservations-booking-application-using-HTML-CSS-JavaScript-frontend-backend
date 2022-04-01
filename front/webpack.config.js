@@ -13,16 +13,19 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist'
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    },
+    devMiddleware: {
+      writeToDisk: true
+    }
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
         exclude: /(node_modules)/,
-        use: {
-          loader: 'ts-loader'
-        }
+        loader: 'ts-loader'
       }
     ]
   },
