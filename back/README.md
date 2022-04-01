@@ -10,7 +10,7 @@ npm --version    # must be `7^
 ### Steps to start api locally:
 
 ```bash
-cd ./back # i.e. the root for this readme.md
+cd ./back # i.e. the root for this README.md
 npm install
 npm audit fix # optional
 
