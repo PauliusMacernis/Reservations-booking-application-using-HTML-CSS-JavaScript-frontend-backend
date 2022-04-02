@@ -1,5 +1,3 @@
-// import {CalendarDayType} from "./CalendarDayType";
-
 export class CalendarDay {
 
     date: Date;

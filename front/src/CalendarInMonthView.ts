@@ -17,7 +17,8 @@ type Reservation = { // TODO: move this out to it's own file
 }
 
 type BookingError = {
-  'message': string
+  'message': string,
+  'length': number
 }
 
 export class CalendarInMonthView {
@@ -285,7 +286,7 @@ export class CalendarInMonthView {
         (res) => res.json()
     )
     .then(
-        (result: { data: { bookReservation: BookReservation }, errors: BookingError[]}) => {
+        (result: { data: { bookReservation: BookReservation }, errors: BookingError[] }) => {
 
           console.log(result);
 
@@ -296,7 +297,7 @@ export class CalendarInMonthView {
             console.log(result);
             const modalHeaderText = document.querySelector('.modal-header-text') as HTMLElement;
 
-            if(result.errors.length > 0) {
+            if(result && result.errors && result.errors.length > 0) {
               modalHeaderText.innerHTML = 'Reservation failed';
               modalCentered[0].innerHTML = `
                 Error: ${result.errors[0].message}

@@ -17,5 +17,4 @@ export class CalendarDayType {
     static DAY_OF_PREV_MONTH_VIEW = 'day_of_previous_month_relative_to_selected_month';
     static DAY_OF_NEXT_MONTH_VIEW = 'day_of_next_month_relative_to_selected_month';
 
-
 }
