@@ -17,8 +17,7 @@ type Reservation = { // TODO: move this out to it's own file
 }
 
 type BookingError = {
-  'message': string,
-  'length': number
+  'message': string
 }
 
 export class CalendarInMonthView {
