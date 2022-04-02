@@ -3,53 +3,53 @@ import { CalendarDayType } from "./CalendarDayType";
 
 export class CalendarMonth {
 
-    #calendar;
+    private readonly calendar: CalendarDay[];
 
     constructor() {
-        this.#calendar = [];
+        this.calendar = [];
     }
 
-    appendToEnd(date, dateTodayReal) {
+    appendToEnd(date: Date, dateTodayReal: Date) {
         this.addItemAsDayOfThisMonthView(date, dateTodayReal, 'push', CalendarDayType.DAY_OF_THIS_MONTH_VIEW);
     }
 
-    addItemAsDayOfThisMonthView(date, dateTodayReal, pushOrUnshift, calendarDayTypeForThisMonthView) {
+    addItemAsDayOfThisMonthView(date: Date, dateTodayReal: Date, pushOrUnshift: 'push'|'unshift', calendarDayTypeForThisMonthView: string) {
         const dateShort = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0);
         const dateTodayRealShort = new Date(dateTodayReal.getFullYear(), dateTodayReal.getMonth(), 1, 0, 0, 0, 0);
 
         if (pushOrUnshift === 'push') {
             if (dateShort.getTime() === dateTodayRealShort.getTime() && date.getDate() === dateTodayReal.getDate()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.TODAY));
             } else if (dateShort.getTime() === dateTodayRealShort.getTime() && date.getDate() > dateTodayReal.getDate()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_AFTER_TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_AFTER_TODAY));
             } else if (dateShort.getTime() === dateTodayRealShort.getTime() && date.getDate() < dateTodayReal.getDate()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
             } else if (dateShort.getTime() > dateTodayRealShort.getTime() && date.getMonth() === dateTodayReal.getMonth()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
             } else if (dateShort.getTime() > dateTodayRealShort.getTime() && date.getMonth() !== dateTodayReal.getMonth()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
             } else if (dateShort.getTime() < dateTodayRealShort.getTime() && date.getMonth() === dateTodayReal.getMonth()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
             } else if (dateShort.getTime() < dateTodayRealShort.getTime() && date.getMonth() !== dateTodayReal.getMonth()) {
-                this.#calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
+                this.calendar.push(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
             } else {
                 throw new Error('Such scenario must not be possible. #1.');
             }
         } else {
             if (dateShort.getTime() === dateTodayRealShort.getTime() && date.getDate() === dateTodayReal.getDate()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.TODAY));
             } else if (dateShort.getTime() === dateTodayRealShort.getTime() && date.getDate() > dateTodayReal.getDate()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_AFTER_TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_AFTER_TODAY));
             } else if (dateShort.getTime() === dateTodayRealShort.getTime() && date.getDate() < dateTodayReal.getDate()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
             } else if (dateShort.getTime() > dateTodayRealShort.getTime() && date.getMonth() === dateTodayReal.getMonth()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
             } else if (dateShort.getTime() > dateTodayRealShort.getTime() && date.getMonth() !== dateTodayReal.getMonth()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_NEXT_MONTH, CalendarDayType.DAY_AFTER_TODAY));
             } else if (dateShort.getTime() < dateTodayRealShort.getTime() && date.getMonth() === dateTodayReal.getMonth()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
             } else if (dateShort.getTime() < dateTodayRealShort.getTime() && date.getMonth() !== dateTodayReal.getMonth()) {
-                this.#calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
+                this.calendar.unshift(new CalendarDay(date, calendarDayTypeForThisMonthView, CalendarDayType.DAY_OF_TODAYS_PREV_MONTH, CalendarDayType.DAY_BEFORE_TODAY));
             } else {
                 throw new Error('Such scenario must not be possible. #2.');
             }
@@ -57,7 +57,7 @@ export class CalendarMonth {
 
     }
 
-    isCalendarBegining(today, calendarDate) {
+    isCalendarBegining(today: Date, calendarDate: Date) {
         let previousMonth = today.getMonth() - 1;
 
         if (previousMonth === -1) {
@@ -73,14 +73,14 @@ export class CalendarMonth {
             );
     }
 
-    getADateFromADayBefore(today) {
+    getADateFromADayBefore(today: Date) {
         const yesterday = new Date(today.getTime());
         yesterday.setDate(today.getDate() - 1);
 
         return yesterday;
     }
 
-    appendToBeginingAllDaysUpTo(today, todayReal) {
+    appendToBeginingAllDaysUpTo(today: Date, todayReal: Date) {
         // Push all items before "today"
         let calendarDate = today;
         while(!this.isCalendarBegining(today, calendarDate)) {
@@ -94,19 +94,19 @@ export class CalendarMonth {
         }
     }
 
-    getADateFromADayAfter(today) {
+    getADateFromADayAfter(today: Date) {
         const tomorrow = new Date(today.getTime());
         tomorrow.setDate(today.getDate() + 1);
 
         return tomorrow;
     }
 
-    getLastDayOfTheMonth(today) {
-        const lastDayOfTheMonth = new Date(today.getYear(), today.getMonth() + 1, 0);
+    getLastDayOfTheMonth(today: Date) {
+        const lastDayOfTheMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
         return lastDayOfTheMonth.getDate();
     }
 
-    isDateTheLastDayOfTheTodaysMonth(calendarDate, today) {
+    isDateTheLastDayOfTheTodaysMonth(calendarDate: Date, today: Date) {
 
         let upcomingMonth = today.getMonth() + 1;
         if(upcomingMonth === 12) {
@@ -123,7 +123,7 @@ export class CalendarMonth {
     }
 
 
-    appendToEndAllDaysAfter(today, todayReal) {
+    appendToEndAllDaysAfter(today: Date, todayReal: Date) {
         let calendarDate = today;
         while(!this.isDateTheLastDayOfTheTodaysMonth(calendarDate, today)) {
             if(calendarDate === today) {
@@ -149,6 +149,6 @@ export class CalendarMonth {
     }
 
     getData() {
-        return this.#calendar;
+        return this.calendar;
     }
 }

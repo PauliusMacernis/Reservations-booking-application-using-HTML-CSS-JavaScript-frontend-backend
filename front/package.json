@@ -8,7 +8,9 @@
     "build:dev": "webpack-dev-server",
     "build": "webpack"
   },
-  "browserslist": "> 0.5%",
+  "browserslist": [
+    "> 0.5%"
+  ],
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
