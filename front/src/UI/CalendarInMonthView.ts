@@ -1,38 +1,22 @@
-import { CalendarMonth } from './CalendarMonth';
+import { CalendarMonth } from '../CalendarMonth';
+import { MonthName } from '../Helper/MonthName';
 import { Modal } from "./Modal";
-
-type BookReservation = {  // TODO: move this out to it's own file
-  _id: string,
-  firstName: string,
-  lastName: string,
-  date: string,
-  createdAt: string
-}
-
-type Reservation = { // TODO: move this out to it's own file
-  _id: string,
-  date: string,
-  reserved: boolean
-  expired: boolean
-}
-
-type BookingError = {
-  'message': string
-}
+import { BookReservation } from "../Type/BookReservation";
+import { Reservation } from "../Type/Reservation";
+import { BookingError } from "../Type/BookingError";
 
 export class CalendarInMonthView {
 
-  MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   today: Date;
   todayReal: Date;
 
-  constructor(realToday: Date) {
+  public constructor(realToday: Date) {
     console.log('REAL TODAY: ', realToday);
     this.todayReal = realToday; // "Real today" - a day to select in the current month
     this.today = realToday;
   }
 
-  render(today: Date): void {
+  public render(today: Date): void {
     this.today = today;       // "Today of the month" - a day to select by default in the month view
 
     this.renderDaysOfTheMonthOf(today);
@@ -40,19 +24,19 @@ export class CalendarInMonthView {
     this.renderNextDayButton();
   }
 
-  renderDaysOfTheMonthOf(selectedMonth: Date): void {
+  private renderDaysOfTheMonthOf(selectedMonth: Date): void {
     const calendarContainer = document.getElementById('calendar-in-month-view') as HTMLElement;
     calendarContainer.innerText = '';
 
     const calendarHeader = document.getElementById('calendar-header') as HTMLTemplateElement;
     const calHead = document.importNode(calendarHeader.content, true);
     const currentMonthAndYearEl = calHead.querySelector('#current-month-and-year') as HTMLElement;
-    currentMonthAndYearEl.innerHTML = `${this.MONTHS[selectedMonth.getMonth()]} ${selectedMonth.getFullYear()}`;
+    currentMonthAndYearEl.innerHTML = `${MonthName.MONTHS[selectedMonth.getMonth()]} ${selectedMonth.getFullYear()}`;
     calendarContainer.append(calHead);
 
     const calendarMonth = new CalendarMonth();
     calendarMonth.appendToEnd(selectedMonth, this.todayReal);
-    calendarMonth.appendToBeginingAllDaysUpTo(selectedMonth, this.todayReal);
+    calendarMonth.appendToBeginningAllDaysUpTo(selectedMonth, this.todayReal);
     calendarMonth.appendToEndAllDaysAfter(selectedMonth, this.todayReal);
 
     const calendarDays = calendarMonth.getData();
@@ -60,7 +44,7 @@ export class CalendarInMonthView {
     const singleCalendarRowAkaWeek = document.getElementById('calendar-row') as HTMLTemplateElement;
 
     let weekday: 1|2|3|4|5|6|7 = 1;
-    let weekEl = document.importNode(singleCalendarRowAkaWeek.content, true) as DocumentFragment; // TODO: Is it DocumentFragment for real?
+    let weekEl = document.importNode(singleCalendarRowAkaWeek.content, true) as DocumentFragment;
     let dayEl = weekEl.querySelector('.monday')! as HTMLElement;
     let firstRow = true as boolean;
     for (const calendarDayKey in calendarDays) {
@@ -101,8 +85,6 @@ export class CalendarInMonthView {
           break;
       }
 
-      firstRow = false; // todo: move to the bottom of the block scope
-
       dayEl.textContent = calendarDays[calendarDayKey].getDayOfMonth().toString();
       dayEl.classList.add(calendarDays[calendarDayKey].getClassForContextOfMonthView());
       dayEl.classList.add(calendarDays[calendarDayKey].getClassForContextOfMonthOfToday());
@@ -119,10 +101,12 @@ export class CalendarInMonthView {
           weekday++;                          // Treat the upcoming day as Tuesday-Sunday.
           break;
       }
+
+      firstRow = false;
     }
   }
 
-  renderPreviousDayButton() {
+  private renderPreviousDayButton(): void {
     const nextButton = document.querySelector('button.prev-month') as HTMLButtonElement;
     nextButton.addEventListener('click', function (this: CalendarInMonthView) {
       this.today = new Date(this.today.getFullYear(), this.today.getMonth() - 1, this.today.getDate());
@@ -130,7 +114,7 @@ export class CalendarInMonthView {
     }.bind(this));
   }
 
-  renderNextDayButton() {
+  private renderNextDayButton(): void {
     const nextButton = document.querySelector('button.next-month') as HTMLButtonElement;
     nextButton.addEventListener('click', function (this: CalendarInMonthView) {
       this.today = new Date(this.today.getFullYear(), this.today.getMonth() + 1, this.today.getDate());
@@ -138,7 +122,7 @@ export class CalendarInMonthView {
     }.bind(this));
   }
 
-  dayHandler(this: HTMLElement) {
+  private dayHandler(this: HTMLElement): void {
     if(this.classList.contains('day_before_today')) {
       console.log('Days before today are not clickable.');
       return;
@@ -208,7 +192,7 @@ export class CalendarInMonthView {
         );
   }
 
-  static clickOnEventButtonHandler(event: Event): void {
+  public static clickOnEventButtonHandler(event: Event): void {
     const eventTarget = event.target as HTMLElement;
 
     if(eventTarget.classList.contains('expired')) {
@@ -220,15 +204,15 @@ export class CalendarInMonthView {
     }
   }
 
-  static clickOnExpiredHandler(event: Event) {
+  public static clickOnExpiredHandler(event: Event): void {
     console.log('expired', event);
   }
 
-  static clickOnReservedHandler(event: Event) {
+  public static clickOnReservedHandler(event: Event): void {
     console.log('reserved', event);
   }
 
-  static clickOnSelectHandler(event: Event) {
+  public static clickOnSelectHandler(event: Event): void {
     const modalCentered = document.getElementsByClassName('centered');
     modalCentered[0].innerHTML = '';
 
@@ -244,7 +228,7 @@ export class CalendarInMonthView {
     console.log('select', event);
   }
 
-  static clickOnSubmitBookingHandler(event: Event ) {
+  public static clickOnSubmitBookingHandler(event: Event): void {
     //event.preventDefault(); // This is kind of redundant because we don't use "<form>"
 
     const eventTarget = event.target as HTMLElement;

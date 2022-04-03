@@ -1,31 +1,36 @@
 export class CalendarDay {
 
-    date: Date;
-    calendarDayDescriptorContextMonth: string;
-    calendarDayDescriptorContextMonthRelToToday: string;
-    calendarDayDescriptorContextToday: string;
+    public date: Date;
+    private readonly calendarDayDescriptorContextMonth: string;
+    private readonly calendarDayDescriptorContextMonthRelToToday: string;
+    private readonly calendarDayDescriptorContextToday: string;
 
     // TODO: calendarDayDescriptorContextMonth, calendarDayDescriptorContextMonthRelToToday, calendarDayDescriptorContextToday types
-    constructor(date: Date, calendarDayDescriptorContextMonth: string, calendarDayDescriptorContextMonthRelToToday: string, calendarDayDescriptorContextToday: string) {
+    public constructor(
+        date: Date,
+        calendarDayDescriptorContextMonth: string,
+        calendarDayDescriptorContextMonthRelToToday: string,
+        calendarDayDescriptorContextToday: string
+    ) {
         this.date = date;
         this.calendarDayDescriptorContextMonth = calendarDayDescriptorContextMonth;
         this.calendarDayDescriptorContextMonthRelToToday = calendarDayDescriptorContextMonthRelToToday;
         this.calendarDayDescriptorContextToday = calendarDayDescriptorContextToday;
     }
 
-    getDayOfMonth(): number {
+    public getDayOfMonth(): number {
         return this.date.getDate();
     }
 
-    getClassForContextOfMonthView(): string {
+    public getClassForContextOfMonthView(): string {
         return this.calendarDayDescriptorContextMonth;
     }
 
-    getClassForContextOfMonthOfToday(): string {
+    public getClassForContextOfMonthOfToday(): string {
         return this.calendarDayDescriptorContextMonthRelToToday;
     }
 
-    getClassForContextOfToday(): string {
+    public getClassForContextOfToday(): string {
         return this.calendarDayDescriptorContextToday;
     }
 }

@@ -1,19 +1,20 @@
 export class Modal {
+
   private readonly fallbackText: string;
   private contentTemplateEl: HTMLTemplateElement;
   private modalTemplateEl: HTMLTemplateElement;
   private modalElement: HTMLDivElement|null;
   private backdropElement: HTMLDivElement|null;
 
-  constructor(contentId: string, fallbackText: string) {
+  public constructor(contentId: string, fallbackText: string) {
     this.fallbackText = fallbackText;
     this.contentTemplateEl = document.getElementById(contentId) as HTMLTemplateElement;
     this.modalTemplateEl = document.getElementById('modal-template') as HTMLTemplateElement;
-    this.modalElement = null; // TODO: Should it be null by default?
-    this.backdropElement = null; // TODO: Should it be null by default?
+    this.modalElement = null;
+    this.backdropElement = null;
   }
 
-  show() {
+  public show(): void {
     if ('content' in document.createElement('template')) {
       const modalElements = document.importNode(
         this.modalTemplateEl.content,
@@ -41,7 +42,7 @@ export class Modal {
     }
   }
 
-  hide() {
+  private hide(): void {
     if(this.modalElement !== null) {
       document.body.removeChild(this.modalElement); // this.modalElement.remove()
       this.modalElement = null;
@@ -52,11 +53,11 @@ export class Modal {
     }
   }
 
-  backdropHandler() {
+  private backdropHandler(): void {
     this.hide();
   }
 
-  xHandler() {
+  private xHandler(): void {
     this.hide();
   }
 }

@@ -1,11 +1,11 @@
-import { CalendarInMonthView } from './CalendarInMonthView';
+import { CalendarInMonthView } from './UI/CalendarInMonthView';
 
 class App {
-    constructor() {
-        this.index();
+    public constructor() {
+        this.init();
     }
 
-    index(): void {
+    private init(): void {
         const today = new Date();
 
         const CalendarInMonthViewObj = new CalendarInMonthView(today);
