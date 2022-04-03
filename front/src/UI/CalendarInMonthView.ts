@@ -51,7 +51,7 @@ export class CalendarInMonthView {
 
       switch(weekday) {
         case 1:
-          if(firstRow === false) {
+          if(!firstRow) {
             weekEl = document.importNode(singleCalendarRowAkaWeek.content, true);  // import the new row into calendar
           }
           break;
@@ -61,7 +61,7 @@ export class CalendarInMonthView {
 
       switch(weekday) {
         case 1: // monday
-          if(firstRow === false) {
+          if(!firstRow) {
             dayEl = weekEl.querySelector('.monday')!;
           }
           break;

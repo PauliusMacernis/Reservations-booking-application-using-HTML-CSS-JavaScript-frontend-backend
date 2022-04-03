@@ -2,10 +2,10 @@ import { CalendarInMonthView } from './UI/CalendarInMonthView';
 
 class App {
     public constructor() {
-        this.init();
+        App.init();
     }
 
-    private init(): void {
+    private static init(): void {
         const today = new Date();
 
         const CalendarInMonthViewObj = new CalendarInMonthView(today);
