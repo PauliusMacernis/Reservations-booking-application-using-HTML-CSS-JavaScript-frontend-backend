@@ -1,6 +1,6 @@
 export class DateRewind {
 
-    public static getADateFromADayAfter(today: Date) {
+    public static getADateFromADayAfter(today: Date): Date {
         const tomorrow = new Date(today.getTime());
         tomorrow.setDate(today.getDate() + 1);
 

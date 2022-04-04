@@ -1,4 +1,4 @@
-export type BookReservation = {
+export interface BookReservation {
     _id: string,
     firstName: string,
     lastName: string,

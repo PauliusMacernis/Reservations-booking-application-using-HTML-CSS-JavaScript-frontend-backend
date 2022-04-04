@@ -1,4 +1,4 @@
-export type Reservation = {
+export interface Reservation {
     _id: string,
     date: string,
     reserved: boolean

@@ -1,6 +1,6 @@
 export class CalendarBoundary {
 
-    public static isCalendarBeginning(today: Date, calendarDate: Date) {
+    public static isCalendarBeginning(today: Date, calendarDate: Date): boolean {
         let previousMonth = today.getMonth() - 1;
 
         if (previousMonth === -1) {
@@ -16,12 +16,12 @@ export class CalendarBoundary {
             );
     }
 
-    public static getLastDayOfTheMonth(today: Date) {
+    public static getLastDayOfTheMonth(today: Date): number {
         const lastDayOfTheMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
         return lastDayOfTheMonth.getDate();
     }
 
-    public static isDateTheLastDayOfTheTodaysMonth(calendarDate: Date, today: Date) {
+    public static isDateTheLastDayOfTheTodaysMonth(calendarDate: Date, today: Date): boolean {
 
         let upcomingMonth = today.getMonth() + 1;
         if(upcomingMonth === 12) {

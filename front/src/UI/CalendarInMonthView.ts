@@ -1,9 +1,9 @@
 import { CalendarMonth } from '../CalendarMonth';
 import { MonthName } from '../Helper/MonthName';
 import { Modal } from "./Modal";
-import { BookReservation } from "../Type/BookReservation";
-import { Reservation } from "../Type/Reservation";
-import { BookingError } from "../Type/BookingError";
+import { BookReservation } from "../Interface/BookReservation";
+import { Reservation } from "../Interface/Reservation";
+import { BookingError } from "../Interface/BookingError";
 
 export class CalendarInMonthView {
 
